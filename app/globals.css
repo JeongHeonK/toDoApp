@@ -31,5 +31,7 @@
 }
 
 body {
+  margin: 0;
   font-family: "NanumSquare";
+  box-sizing: border-box;
 }
