@@ -1,10 +1,13 @@
-import Header from "./components/header";
+import ToDoInput from "./components/ToDoInput";
+import Header from "./components/Header";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Header />
-      <h1>To-Do</h1>
-    </main>
+      <main>
+        <ToDoInput />
+      </main>
+    </>
   );
 }
