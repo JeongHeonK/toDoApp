@@ -31,7 +31,7 @@ export default function ToDoItem({ name, isCompleted, id }: DataValue) {
       >
         {isCompleted && "✔︎"}
       </button>
-      <p className="grow">{name}</p>
+      <p className={`grow ${isCompleted && "line-through"}`}>{name}</p>
     </div>
   );
 }
