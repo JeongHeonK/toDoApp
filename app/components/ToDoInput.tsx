@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, FormEvent } from "react";
 
 export default function ToDoInput() {
   const [userInput, setUserInput] = useState("");
@@ -8,8 +8,18 @@ export default function ToDoInput() {
     setUserInput((prev) => e.target.value);
   };
 
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await fetch("/api/todo");
+    const result = await response.json();
+    console.log(result);
+  };
+
   return (
-    <form className="max-w-screen-lg mx-auto h-14 flex justify-around p-0 items-stretch mt-6">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-screen-lg mx-auto h-14 flex justify-around p-0 items-stretch mt-6"
+    >
       <input
         onChange={handleInput}
         name="toDoInput"
