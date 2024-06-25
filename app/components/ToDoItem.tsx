@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 interface DataValue {
   id: number;
@@ -31,7 +32,12 @@ export default function ToDoItem({ name, isCompleted, id }: DataValue) {
       >
         {isCompleted && "✔︎"}
       </button>
-      <p className={`grow ${isCompleted && "line-through"}`}>{name}</p>
+      <Link
+        href={`/items/${id}`}
+        className={`grow ${isCompleted && "line-through"}`}
+      >
+        {name}
+      </Link>
     </div>
   );
 }
