@@ -18,12 +18,12 @@ export default function ToDoInput() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-screen-lg mx-auto h-14 flex justify-around p-0 items-stretch mt-6"
+      className="max-w-screen-lg mx-auto h-14 flex justify-center gap-4 p-0 items-stretch mt-6"
     >
       <input
         onChange={handleInput}
         name="toDoInput"
-        className="w-9/12 border-2 border-slate-900 rounded-full shadow-shadowCustom bg-slate-100 pl-6"
+        className="w-10/12 border-2 border-slate-900 rounded-full shadow-shadowCustom bg-slate-100 pl-6"
         placeholder="할 일을 입력해 주세요"
         value={userInput}
       />
