@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "isCompleted": true,
+    "name": "정적 페이지 구현"
+  },
+  {
+    "id": 1,
+    "isCompleted": false,
+    "name": "동적 페이지 구현"
+  },
+  {
+    "id": 2,
+    "isCompleted": false,
+    "name": "api 연결"
+  }
+]
