@@ -1,13 +1,28 @@
-"use client";
 import Image from "next/image";
 import uploadImg from "/public/img/uploadImg.png";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+
+type Props = {
+  name: string;
+  value: string;
+  onChange: (name: string, value: string) => void;
+};
 
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 
-export default function ImageInput() {
+export default function ImageInput({ name, value, onChange }: Props) {
   const [preview, setPreview] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
+
+  const arrayBufferToString = (buffer: ArrayBuffer) => {
+    let binary = "";
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return binary;
+  };
 
   const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
@@ -19,6 +34,16 @@ export default function ImageInput() {
         e.target.value = "";
         return;
       }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        const binary = arrayBufferToString(arrayBuffer);
+
+        onChange(name, binary);
+      };
+
+      reader.readAsArrayBuffer(nextValue);
 
       const nextPreview = URL.createObjectURL(nextValue);
       setPreview((prev) => nextPreview);
@@ -36,7 +61,7 @@ export default function ImageInput() {
           alt="preview"
           objectFit="contain"
           fill
-          className="overflow-hidden block"
+          className="object-cover"
         />
       ) : (
         <Image
