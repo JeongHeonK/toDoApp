@@ -1,26 +1,45 @@
-"use client";
 import Link from "next/link";
+import axios from "axios";
+
 import StateIndicator from "./StateIndicator";
 
-interface DataValue {
+import { Dispatch, SetStateAction } from "react";
+import { Data } from "./ToDoWrapper";
+
+type Props = {
   id: number;
   isCompleted: boolean;
   name: string;
-}
+  setWorkData: Dispatch<SetStateAction<Data[] | undefined>>;
+};
 
-export default function ToDoItem({ name, isCompleted, id }: DataValue) {
+export default function ToDoItem({
+  name,
+  isCompleted,
+  id,
+  setWorkData,
+}: Props) {
   const divClassName = isCompleted ? "bg-violet-100" : "bg-white";
   const buttonClassName = isCompleted
     ? "bg-violet-600 text-white"
     : "bg-yellow-50";
 
   const handleEditClick = async () => {
-    const response = await fetch("api/todo", {
-      method: "PATCH",
-      body: JSON.stringify({ id, name, isCompleted: !isCompleted }),
+    const response = await axios.patch("/api/todo", {
+      id,
+      name,
+      isCompleted: !isCompleted,
     });
-    const result = await response.json();
-    console.log(result);
+    setWorkData((prev) => {
+      const copiedData = prev?.map((item) => {
+        if (item.id === id) {
+          return { ...item, isCompleted: !item.isCompleted };
+        }
+        return item;
+      });
+      console.log(copiedData);
+      return copiedData;
+    });
   };
 
   return (

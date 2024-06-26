@@ -1,24 +1,27 @@
 import ToDoItem from "./ToDoItem";
 import ToDoTitle from "./ToDoTitle";
-import mockupData from "../mockup.json";
 
-interface Props {
+import { Dispatch, SetStateAction } from "react";
+import { Data } from "./ToDoWrapper";
+
+type Props = {
   isCompleted: boolean;
-}
+  works: Data[] | undefined;
+  setWorkData: Dispatch<SetStateAction<Data[] | undefined>>;
+};
 
-export default function ToDoBox({ isCompleted }: Props) {
-  const worksArray = mockupData.filter(
-    (item) => item.isCompleted === isCompleted
-  );
+export default function ToDoBox({ isCompleted, works, setWorkData }: Props) {
+  const worksArray = works?.filter((item) => item.isCompleted === isCompleted);
   return (
-    <article className="w-1/2 mt-10">
+    <article className="w-1/2 h-60 mt-10 overflow-scroll ">
       <ToDoTitle isCompleted={isCompleted} />
-      {worksArray.map((item, index) => (
+      {worksArray?.map((item: Data) => (
         <ToDoItem
           isCompleted={item.isCompleted}
           id={item.id}
           name={item.name}
           key={item.id}
+          setWorkData={setWorkData}
         />
       ))}
     </article>
