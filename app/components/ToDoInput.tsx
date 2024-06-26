@@ -1,7 +1,14 @@
 "use client";
 import { ChangeEvent, useState, FormEvent } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { Data } from "./ToDoWrapper";
+import axios from "axios";
 
-export default function ToDoInput() {
+type Props = {
+  setWorkData: Dispatch<SetStateAction<Data[] | undefined>>;
+};
+
+export default function ToDoInput({ setWorkData }: Props) {
   const [userInput, setUserInput] = useState("");
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -10,9 +17,13 @@ export default function ToDoInput() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("/api/todo");
-    const result = await response.json();
-    console.log(result);
+    if (userInput.trim().length === 0) {
+      alert("할 일을 입력해주세요.");
+      return;
+    }
+    const response = await axios.post("/api/todo", { name: userInput });
+    setWorkData((prev: any) => [response.data, ...prev]);
+    setUserInput("");
   };
 
   return (

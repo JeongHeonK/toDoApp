@@ -1,15 +1,9 @@
-import ToDoInput from "./components/ToDoInput";
+import ToDoWrapper from "./components/ToDoWrapper";
 
-import ToDoBox from "./components/ToDoBox";
-
-export default function Home() {
+export default async function Home() {
   return (
     <main>
-      <ToDoInput />
-      <section className="max-w-screen-lg mx-auto flex justify-center gap-12">
-        <ToDoBox isCompleted={false} />
-        <ToDoBox isCompleted />
-      </section>
+      <ToDoWrapper />
     </main>
   );
 }
