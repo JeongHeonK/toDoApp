@@ -3,6 +3,8 @@ import Image from "next/image";
 import uploadImg from "/public/img/uploadImg.png";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
+
 export default function ImageInput() {
   const [preview, setPreview] = useState("");
   const imgRef = useRef<HTMLInputElement>(null);
@@ -10,6 +12,14 @@ export default function ImageInput() {
   const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
       const nextValue = e.target.files[0];
+      const fileSize = nextValue.size;
+
+      if (fileSize > MAX_IMAGE_SIZE) {
+        alert("5MB이하의 파일만 업로드 할 수 있습니다.");
+        e.target.value = "";
+        return;
+      }
+
       const nextPreview = URL.createObjectURL(nextValue);
       setPreview((prev) => nextPreview);
     }
