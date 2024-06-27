@@ -1,25 +1,27 @@
 "use client";
-import mockupData from "../../mockup.json";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import DetailTitle from "@/app/components/DetailTitle";
 import ImageInput from "@/app/components/ImageInput";
 import MemoInput from "@/app/components/MemoInput";
 import { ChangeEvent } from "react";
-import { json } from "stream/consumers";
+import axios from "axios";
+
+const defaultValue = {
+  name: "",
+  memo: "",
+  imageUrl: "",
+  isCompleted: false,
+};
 
 export default function ItemDetail({
   params: { itemId },
 }: {
   params: { itemId: string };
 }) {
-  const targetData = mockupData.find((item) => item.id === Number(itemId));
-  const [detailData, setDetailData] = useState({
-    name: targetData?.name,
-    memo: "",
-    imageUrl: "",
-    isCompleted: targetData?.isCompleted,
-  });
+  const [detailData, setDetailData] = useState(defaultValue);
+  const router = useRouter();
 
   const handleChange = (name: string, value: string) => {
     setDetailData((prev) => ({
@@ -30,35 +32,32 @@ export default function ItemDetail({
 
   const handleSubmitClick = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("/api/todo", {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(detailData),
-    });
-    const result = await response.json();
-
-    console.log(result);
+    const response = await axios.patch("/api/todoDetail", { detailData });
+    router.push("/");
   };
 
   const handleDeleteClick = async () => {
-    const response = await fetch("/api/todo", {
-      method: "DELETE",
-      body: JSON.stringify(itemId),
-    });
-    const result = await response.json();
-
-    console.log(result);
+    const response = await axios.delete(`/api/todoDetail?id=${itemId}`);
+    router.push("/");
   };
+
+  useState(() => {
+    const getDetailData = async () => {
+      const response = await axios.get("/api/todoDetail", {
+        params: { itemId },
+      });
+      setDetailData(response.data);
+    };
+    getDetailData();
+  });
 
   return (
     <form onSubmit={handleSubmitClick} className="max-w-screen-lg mx-auto mt-6">
       <DetailTitle
         value={detailData.name}
         onChange={handleChange}
-        isCompleted={targetData?.isCompleted}
-        title={targetData?.name}
+        isCompleted={detailData?.isCompleted}
+        title={detailData?.name}
       />
       <div className="flex gap-3 mt-6">
         <ImageInput
