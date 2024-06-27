@@ -1,6 +1,7 @@
 import Image from "next/image";
 import uploadImg from "/public/img/uploadImg.png";
 import { ChangeEvent, useRef, useState } from "react";
+import axios from "axios";
 
 type Props = {
   name: string;
@@ -11,21 +12,11 @@ type Props = {
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 
 export default function ImageInput({ name, value, onChange }: Props) {
-  const [preview, setPreview] = useState("");
+  const [preview, setPreview] = useState(value);
   const imgRef = useRef<HTMLInputElement>(null);
 
-  const arrayBufferToString = (buffer: ArrayBuffer) => {
-    let binary = "";
-    const bytes = new Uint8Array(buffer);
-    const len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return binary;
-  };
-
-  const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files !== null) {
+  const handleImgChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
       const nextValue = e.target.files[0];
       const fileSize = nextValue.size;
 
@@ -35,16 +26,12 @@ export default function ImageInput({ name, value, onChange }: Props) {
         return;
       }
 
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const arrayBuffer = reader.result as ArrayBuffer;
-        const binary = arrayBufferToString(arrayBuffer);
-
-        onChange(name, binary);
-      };
-
-      reader.readAsArrayBuffer(nextValue);
-
+      // const formData = new FormData();
+      // formData.append("image", nextValue);
+      // const response = await fetch("/api/image", {
+      //   method: "POST",
+      //   body: formData,
+      // });
       const nextPreview = URL.createObjectURL(nextValue);
       setPreview((prev) => nextPreview);
     }
