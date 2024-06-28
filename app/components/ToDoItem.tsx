@@ -57,3 +57,8 @@ export default function ToDoItem({
     </div>
   );
 }
+
+/**
+ * 할 일 목록을 보여주는 컴포넌트 입니다.
+ * 클릭 시 해당 detail 페이지로 이동합니다.
+ */

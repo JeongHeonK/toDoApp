@@ -13,3 +13,9 @@ export default function StateIndicator({ isCompleted, onClick }: Props) {
     </button>
   );
 }
+
+/**
+ * home과 detail페이지에서 완료 상태를 나타내주는 작은 원형 버튼입니다.
+ * 클릭 시, isCompleted 값을 변경합니다.
+ * isCompleted값에 따라 색과 텍스트가 변경됩니다.
+ */

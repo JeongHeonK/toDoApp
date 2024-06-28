@@ -91,3 +91,10 @@ export default function ToDoBox({ isCompleted, works, setWorkData }: Props) {
     </article>
   );
 }
+
+/**
+ * 할 일 목록을 관리하는 컴포넌트 입니다.
+ * 반응형 디자인으로 창 넓이에 따라 정렬이 변경됩니다.
+ * 화면에는 할일 목록이 3개가 표시되고 hidden으로 총 4개가 표시됩니다.
+ * 스크롤할 시 할일 목록이 더 있다면, 3개씩 할일 목록이 추가됩니다.
+ */

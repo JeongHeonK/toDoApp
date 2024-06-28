@@ -31,3 +31,9 @@ export default function DetailTitle({ value, isCompleted, onChange }: Props) {
     </div>
   );
 }
+
+/**
+ * 디테일 페이지 제목 컴포넌트 입니다
+ * isComplete에 따라 색이 변합니다
+ * input 내용은 state lifting을 통해 부모 컴포넌트에서 관리됩니다.
+ */
