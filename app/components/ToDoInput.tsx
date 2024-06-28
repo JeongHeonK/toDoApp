@@ -1,8 +1,15 @@
 "use client";
-import { ChangeEvent, useState, FormEvent } from "react";
-import { Dispatch, SetStateAction } from "react";
-import { Data } from "./ToDoWrapper";
+import {
+  ChangeEvent,
+  useState,
+  FormEvent,
+  Dispatch,
+  SetStateAction,
+} from "react";
+
 import axios from "axios";
+
+import { Data } from "./ToDoWrapper";
 
 type Props = {
   setWorkData: Dispatch<SetStateAction<Data[] | undefined>>;

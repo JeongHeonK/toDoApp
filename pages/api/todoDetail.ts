@@ -41,7 +41,7 @@ export default async function todoDetailHandler(
 
       res.status(200).json(response.data);
     } catch (e) {
-      console.log(e);
+      res.status(500).json(e);
 
       return;
     }

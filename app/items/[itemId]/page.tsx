@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 
 import DetailTitle from "@/app/components/DetailTitle";
 import ImageInput from "@/app/components/ImageInput";
 import MemoInput from "@/app/components/MemoInput";
-import { ChangeEvent } from "react";
+
 import axios from "axios";
 
 const defaultValue = {
@@ -41,7 +41,7 @@ export default function ItemDetail({
     router.push("/");
   };
 
-  useState(() => {
+  useEffect(() => {
     const getDetailData = async () => {
       const response = await axios.get("/api/todoDetail", {
         params: { itemId },
@@ -49,7 +49,7 @@ export default function ItemDetail({
       setDetailData(response.data);
     };
     getDetailData();
-  });
+  }, [itemId]);
 
   return (
     <form
