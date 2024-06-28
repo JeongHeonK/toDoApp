@@ -28,7 +28,7 @@ export default function MemoInput({ onChange, defaultValue }: Props) {
   }, []);
 
   return (
-    <div className="grow relative rounded-xl bg-memo-pattern flex flex-col justify-center">
+    <div className="grow relative rounded-xl h-80 bg-memo-pattern flex flex-col justify-center">
       <p className="absolute w-fit left-0 right-0 mx-auto top-3 text-xl text-amber-800">
         Memo
       </p>
