@@ -40,7 +40,7 @@ export default function ImageInput({ name, value, onChange }: Props) {
   return (
     <label
       htmlFor="imageUpload"
-      className="relative w-2/5 h-80 rounded-xl border-2 border-dashed cursor-pointer"
+      className="relative w-full lg:w-2/5 h-80 rounded-xl border-2 border-dashed cursor-pointer"
     >
       {preview ? (
         <Image

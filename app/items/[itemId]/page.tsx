@@ -52,14 +52,16 @@ export default function ItemDetail({
   });
 
   return (
-    <form onSubmit={handleSubmitClick} className="max-w-screen-lg mx-auto mt-6">
+    <form
+      onSubmit={handleSubmitClick}
+      className="max-w-screen-lg mx-auto p-6 lg:p-0 lg:mt-6"
+    >
       <DetailTitle
         value={detailData.name}
         onChange={handleChange}
         isCompleted={detailData?.isCompleted}
-        title={detailData?.name}
       />
-      <div className="flex gap-3 mt-6">
+      <div className="flex flex-col lg:flex-row gap-6 mt-6">
         <ImageInput
           name="imageUrl"
           value={detailData.imageUrl}
@@ -67,8 +69,12 @@ export default function ItemDetail({
         />
         <MemoInput defaultValue={detailData.memo} onChange={handleChange} />
       </div>
-      <div className="flex justify-end gap-3 mt-6">
-        <button className="w-40 shadow-shadowCustom rounded-full border-2 border-slate-900 h-14 bg-slate-200">
+      <div className="flex justify-center lg:justify-end gap-3 mt-6">
+        <button
+          className={`w-40 shadow-shadowCustom rounded-full border-2 border-slate-900 h-14 ${
+            detailData.memo.trim().length > 0 ? "bg-lime-300" : "bg-slate-200"
+          }`}
+        >
           ✓ 수정 완료
         </button>
         <button
