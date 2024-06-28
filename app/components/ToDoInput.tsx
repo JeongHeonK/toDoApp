@@ -29,7 +29,7 @@ export default function ToDoInput({ setWorkData }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-screen-lg mx-auto h-14 flex justify-center gap-4 p-0 items-stretch mt-6"
+      className="max-w-screen-lg mx-auto h-14 flex justify-center gap-4 p-0 items-stretch px-5 lg:px-0 mt-6"
     >
       <input
         onChange={handleInput}
@@ -38,7 +38,7 @@ export default function ToDoInput({ setWorkData }: Props) {
         placeholder="할 일을 입력해 주세요"
         value={userInput}
       />
-      <button className="w-40 px-auto py-4 shadow-shadowCustom bg-slate-100 border-2 border-slate-900 rounded-full">
+      <button className="w-14 text-transparent bg-plusIcon bg-no-repeat bg-center md:bg-none md:text-black md:w-40 px-auto py-4 shadow-shadowCustom bg-slate-100 border-2 border-slate-900 rounded-full">
         + 추가하기
       </button>
     </form>
