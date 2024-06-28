@@ -24,7 +24,7 @@ export default function ToDoWrapper() {
   return (
     <>
       <ToDoInput setWorkData={setWorkDate} />
-      <section className="max-w-screen-lg mx-auto flex flex-col lg:flex-row lg:justify-center items-center gap-12">
+      <section className="max-w-screen-lg h-fit mx-auto flex flex-col lg:flex-row lg:justify-center items-center gap-12">
         <ToDoBox
           isCompleted={false}
           works={workData}
