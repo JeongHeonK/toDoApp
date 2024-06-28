@@ -1,9 +1,10 @@
+import { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
-import axios from "axios";
 
 import StateIndicator from "./StateIndicator";
 
-import { Dispatch, SetStateAction } from "react";
+import axios from "axios";
+
 import { Data } from "./ToDoWrapper";
 
 type Props = {

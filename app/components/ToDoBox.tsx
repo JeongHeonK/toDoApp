@@ -1,7 +1,8 @@
+import { Dispatch, SetStateAction } from "react";
+
 import ToDoItem from "./ToDoItem";
 import ToDoTitle from "./ToDoTitle";
 
-import { Dispatch, SetStateAction } from "react";
 import { Data } from "./ToDoWrapper";
 
 type Props = {

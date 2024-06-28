@@ -1,5 +1,6 @@
-import StateIndicator from "@/app/components/StateIndicator";
 import { ChangeEvent } from "react";
+
+import StateIndicator from "@/app/components/StateIndicator";
 
 type Props = {
   value: string | undefined;
