@@ -1,6 +1,8 @@
+import { ChangeEvent, useEffect, useState } from "react";
 import Image from "next/image";
+
 import uploadImg from "/public/img/uploadImg.png";
-import { ChangeEvent, useRef, useState } from "react";
+
 import axios from "axios";
 
 type Props = {
@@ -12,8 +14,7 @@ type Props = {
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 
 export default function ImageInput({ name, value, onChange }: Props) {
-  const [preview, setPreview] = useState(value);
-  const imgRef = useRef<HTMLInputElement>(null);
+  const [preview, setPreview] = useState<string>(value);
 
   const handleImgChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -21,21 +22,39 @@ export default function ImageInput({ name, value, onChange }: Props) {
       const fileSize = nextValue.size;
 
       if (fileSize > MAX_IMAGE_SIZE) {
-        alert("5MB이하의 파일만 업로드 할 수 있습니다.");
+        alert("5MB 이하의 파일만 업로드 할 수 있습니다.");
         e.target.value = "";
         return;
       }
 
-      // const formData = new FormData();
-      // formData.append("image", nextValue);
-      // const response = await fetch("/api/image", {
-      //   method: "POST",
-      //   body: formData,
-      // });
+      const formData = new FormData();
+      formData.append("image", nextValue);
+      try {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/images/upload`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        const url = response.data.url;
+        onChange(name, url);
+      } catch (e) {
+        console.error("이미지 업로드 실패: ", e);
+      }
+
       const nextPreview = URL.createObjectURL(nextValue);
-      setPreview((prev) => nextPreview);
+      setPreview(nextPreview);
     }
   };
+
+  useEffect(() => {
+    if (value) {
+      setPreview(value);
+    }
+  }, [value]);
 
   return (
     <label
@@ -54,6 +73,7 @@ export default function ImageInput({ name, value, onChange }: Props) {
         <Image
           className="absolute right-0 left-0 mx-auto top-0 bottom-0 my-auto"
           src={uploadImg}
+          objectFit="contain"
           alt="upload-logo"
           width={54}
         />
@@ -66,7 +86,7 @@ export default function ImageInput({ name, value, onChange }: Props) {
       <input
         type="file"
         id="imageUpload"
-        ref={imgRef}
+        accept="image/*"
         onChange={handleImgChange}
         hidden
       />
