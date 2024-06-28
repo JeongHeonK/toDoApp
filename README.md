@@ -2,9 +2,9 @@
 
 ### 1. Home
 
-<img src="./public/img/readme/home-lg.png" width="288"  alt="Home-lg"></img>
-<img src="./public/img/readme/home-md.png" width="200" height="30%" alt="Home-md" />
-<img src="./public/img/readme/home-sm.png" width="85"  alt="Home-sm" />
+<img src="./public/img/readme/home-lg.png" width="100%"  alt="Home-lg"></img>
+<img src="./public/img/readme/home-md.png" width="100%" height="30%" alt="Home-md" />
+<img src="./public/img/readme/home-sm.png" width="100%"  alt="Home-sm" />
 
 #### Home 페이지 입니다.
 
@@ -31,9 +31,9 @@
 
 ### 2. Detail
 
-<img src="./public/img/readme/detail-lg.png" width="306"  alt="Detail-lg" />
-<img src="./public/img/readme/detail-md.png" width="200"  alt="Detail-md" />
-<img src="./public/img/readme/detail-sm.png" width="103"  alt="Detail-sm" />
+<img src="./public/img/readme/detail-lg.png" width="100%"  alt="Detail-lg" />
+<img src="./public/img/readme/detail-md.png" width="100%"  alt="Detail-md" />
+<img src="./public/img/readme/detail-sm.png" width="100%"  alt="Detail-sm" />
 
 #### Detail 페이지 입니다.
 
