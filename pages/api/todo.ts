@@ -31,8 +31,10 @@ export default async function todoHandler(
         memo: "",
         imageUrl: "",
       });
-    } catch (e: any) {
-      console.log(e.details);
+    } catch (e) {
+      res.status(500).json(e);
+
+      return;
     }
     res.redirect(302, "/");
   } else {

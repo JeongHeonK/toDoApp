@@ -37,7 +37,7 @@ export default function ToDoItem({
         }
         return item;
       });
-      console.log(copiedData);
+
       return copiedData;
     });
   };

@@ -12,7 +12,7 @@ export default async function todoDetailHandler(
 
       res.status(200).json(response.data);
     } catch (e) {
-      console.log(e);
+      res.status(500).json(e);
 
       return;
     }
@@ -29,7 +29,7 @@ export default async function todoDetailHandler(
 
       res.status(200).json("수정 완료");
     } catch (e) {
-      console.log(e);
+      res.status(500).json(e);
 
       return;
     }
