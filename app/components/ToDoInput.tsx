@@ -51,3 +51,9 @@ export default function ToDoInput({ setWorkData }: Props) {
     </form>
   );
 }
+
+/**
+ * 반응형 디자인으로 창 넓이에 따라 정렬이 변경됩니다.
+ * 입력 후, Enter혹은 버튼 클릭으로 할일을 추가할 수 있습니다.
+ * 반응형 디자인으로 폭에 따라 버튼이 달라집니다.
+ */

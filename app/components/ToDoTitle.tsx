@@ -14,3 +14,8 @@ export default function ToDoTitle({ isCompleted }: Props) {
     </div>
   );
 }
+
+/**
+ * 할일 목록의 상태를 보여줍니다.
+ * "DONE", "TO DO" 로 구분됩니다.
+ */

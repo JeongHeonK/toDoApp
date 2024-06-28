@@ -88,3 +88,10 @@ export default function ItemDetail({
     </form>
   );
 }
+
+/**
+ * detail페이지 입니다.
+ * 로드 시, 전달된 id값을 통해 detail 정보를 수신합니다.
+ * 모든 스테이트를 관리하고 있습니다.
+ * 여기서 모든 업데이트를 관리하고, 제출 시 한번에 제출합니다.
+ */

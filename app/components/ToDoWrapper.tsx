@@ -37,3 +37,9 @@ export default function ToDoWrapper() {
     </>
   );
 }
+
+/**
+ * ToDoInput과 ToDoBox컴포넌트들 간의 state 업데이트를 관리하는 컴포넌트 입니다.
+ * 서버에 POST, PATCH요청후 클라이언트 쪽에도 변경값을 바로 업데이트 하기 위한 state를 관리하고 있습니다.
+ * 렌더링 시, 서버에 할일 목록들을 요청해서 ToDoBox로 전달합니다.
+ */

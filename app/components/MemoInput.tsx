@@ -43,3 +43,9 @@ export default function MemoInput({ onChange, defaultValue }: Props) {
     </div>
   );
 }
+
+/**
+ * todo의 memo를 저장하는 컴포넌트 입니다.
+ * 기존 내용이 없을 경우, 위치를 나타내기 위해 placeholder를 사용했습니다.
+ * 사용자의 입력값에 따라 높이가 변합니다.
+ */

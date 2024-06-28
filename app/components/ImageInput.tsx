@@ -93,3 +93,12 @@ export default function ImageInput({ name, value, onChange }: Props) {
     </label>
   );
 }
+
+/**
+ * file(image) upload용 컴포넌트 입니다.
+ * 업로드 시, 서버를 거치지 않고 바로 외부 api로 post요청을 보냅니다.
+ * 응답으로 url을 받습니다.
+ * url 수신 시, state를 업데이트 합니다.
+ * 이미지 업로드 시, 미리보기가 나옵니다.
+ * 이미지 업로드 시, 버튼이 변경됩니다.
+ */
