@@ -36,7 +36,7 @@ export default function MemoInput({ onChange, defaultValue }: Props) {
         name="memo"
         ref={textareaRef}
         onChange={handleChange}
-        value={defaultValue}
+        defaultValue={defaultValue}
         placeholder="여기에 입력해주세요."
         className="w-full h-auto rounded-xl resize-none text-center bg-transparent focus:outline-none overflow:hidden"
       />

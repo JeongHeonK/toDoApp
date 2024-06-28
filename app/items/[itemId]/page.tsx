@@ -72,7 +72,7 @@ export default function ItemDetail({
       <div className="flex justify-center lg:justify-end gap-3 mt-6">
         <button
           className={`w-40 shadow-shadowCustom rounded-full border-2 border-slate-900 h-14 ${
-            detailData.memo.trim().length > 0 ? "bg-lime-300" : "bg-slate-200"
+            detailData.memo?.trim().length > 0 ? "bg-lime-300" : "bg-slate-200"
           }`}
         >
           ✓ 수정 완료
