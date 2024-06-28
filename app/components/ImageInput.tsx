@@ -58,9 +58,11 @@ export default function ImageInput({ name, value, onChange }: Props) {
           width={54}
         />
       )}
-      <div className="size-16 text-slate-500 bg-slate-200 text-4xl rounded-full text-center pt-3 absolute bottom-2 right-2">
-        +
-      </div>
+      <div
+        className={`size-16 text-slate-500 bg-slate-200 rounded-full absolute bottom-2 right-2 ${
+          preview ? "bg-btn-edit" : "bg-btn-plus"
+        }`}
+      ></div>
       <input
         type="file"
         id="imageUpload"
