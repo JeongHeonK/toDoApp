@@ -37,7 +37,6 @@ export default async function todoHandler(
 
       return;
     }
-    res.redirect(302, "/");
   } else {
     res.status(405).json({ error: "Please check method again" });
   }
