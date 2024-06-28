@@ -31,6 +31,7 @@ export default async function todoHandler(
         memo: "",
         imageUrl: "",
       });
+      res.status(200).json(response.data);
     } catch (e) {
       res.status(500).json(e);
 
