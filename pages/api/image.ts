@@ -20,7 +20,9 @@ export default async function imageHandler(
     try {
       [fields, files] = await form.parse(req);
     } catch (e) {
-      console.log(e);
+      res.status(500).json(e);
+
+      return;
     }
     if (files !== undefined) {
       // const [uploadFile] = files.image;
