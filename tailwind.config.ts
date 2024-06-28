@@ -10,6 +10,9 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "memo-pattern": "url(/img/memo.png)",
+        plusIcon: "url(/img/plus.png) ",
+        logo: "url(/img/Logo.png)",
+        "logo-sm": "url(/img/logo-sm.png)",
       },
       boxShadow: {
         shadowCustom: "4.5px 3px 0px 2px #0F172A",
