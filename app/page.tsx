@@ -1,6 +1,6 @@
 import ToDoWrapper from "./components/ToDoWrapper";
 
-export default async function Home() {
+export default function Home() {
   return (
     <main>
       <ToDoWrapper />

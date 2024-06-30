@@ -32,22 +32,41 @@ export default function ItemDetail({
 
   const handleSubmitClick = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await axios.patch("/api/todoDetail", { detailData });
-    router.push("/");
+
+    try {
+      const response = await axios.patch("/api/todoDetail", { detailData });
+      router.push("/");
+    } catch (e) {
+      alert("수정할 수 없습니다. 다시 한 번 시도해주세요.");
+      router.push("/");
+    }
   };
 
   const handleDeleteClick = async () => {
-    const response = await axios.delete(`/api/todoDetail?id=${itemId}`);
-    router.push("/");
+    try {
+      const response = await axios.delete(`/api/todoDetail?id=${itemId}`);
+      router.push("/");
+    } catch (e) {
+      alert("삭제할 수 없습니다. 다시 한 번 시도해주세요.");
+
+      return;
+    }
   };
 
   useEffect(() => {
     const getDetailData = async () => {
-      const response = await axios.get("/api/todoDetail", {
-        params: { itemId },
-      });
-      setDetailData(response.data);
+      try {
+        const response = await axios.get("/api/todoDetail", {
+          params: { itemId },
+        });
+        setDetailData(response.data);
+      } catch (e) {
+        alert("데이터를 불러오는데 실패했습니다.");
+
+        return;
+      }
     };
+
     getDetailData();
   }, [itemId]);
 

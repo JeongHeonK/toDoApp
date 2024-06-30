@@ -26,21 +26,28 @@ export default function ToDoItem({
     : "bg-yellow-50";
 
   const handleEditClick = async () => {
-    const response = await axios.patch("/api/todo", {
-      id,
-      name,
-      isCompleted: !isCompleted,
-    });
-    setWorkData((prev) => {
-      const copiedData = prev?.map((item) => {
-        if (item.id === id) {
-          return { ...item, isCompleted: !item.isCompleted };
-        }
-        return item;
+    try {
+      const response = await axios.patch("/api/todo", {
+        id,
+        name,
+        isCompleted: !isCompleted,
       });
 
-      return copiedData;
-    });
+      setWorkData((prev) => {
+        const copiedData = prev?.map((item) => {
+          if (item.id === id) {
+            return { ...item, isCompleted: !item.isCompleted };
+          }
+          return item;
+        });
+
+        return copiedData;
+      });
+    } catch (e) {
+      alert("상태를 변경할 수 없습니다. 다시 한번 시도해주세요.");
+
+      return;
+    }
   };
 
   return (

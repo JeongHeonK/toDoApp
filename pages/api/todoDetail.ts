@@ -46,7 +46,7 @@ export default async function todoDetailHandler(
       return;
     }
   } else {
-    res.status(404).json("잘못된 요청입니다.");
+    res.status(404).json({ error: "Please check method again" });
 
     return;
   }

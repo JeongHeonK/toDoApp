@@ -42,7 +42,11 @@ export default function ImageInput({ name, value, onChange }: Props) {
         const url = response.data.url;
         onChange(name, url);
       } catch (e) {
-        console.error("이미지 업로드 실패: ", e);
+        alert(
+          "이미지 업로드 과정에서 오류가 발생했습니다. 다시 한번 시도해주세요."
+        );
+
+        return;
       }
 
       const nextPreview = URL.createObjectURL(nextValue);

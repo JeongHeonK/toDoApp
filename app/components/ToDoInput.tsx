@@ -24,13 +24,22 @@ export default function ToDoInput({ setWorkData }: Props) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (userInput.trim().length === 0) {
       alert("할 일을 입력해주세요.");
       return;
     }
-    const response = await axios.post("/api/todo", { name: userInput });
-    setWorkData((prev: any) => [response.data, ...prev]);
-    setUserInput("");
+
+    try {
+      const response = await axios.post("/api/todo", { name: userInput });
+      setWorkData((prev: any) => [response.data, ...prev]);
+      setUserInput("");
+    } catch (e) {
+      alert("할 일을 추가할 수 없습니다. 다시 한번 시도해주세요.");
+      setUserInput("");
+
+      return;
+    }
   };
 
   return (
