@@ -18,17 +18,18 @@ export default async function todoDetailHandler(
     }
   } else if (req.method === "PATCH") {
     const { id, name, memo, imageUrl, isCompleted } = req.body.detailData;
-
+    console.log(req.body);
     try {
       const response = await instance.patch(`items/${id}`, {
         name,
         memo,
-        imageUrl,
+        imageUrl: "",
         isCompleted,
       });
 
       res.status(200).json("수정 완료");
     } catch (e) {
+      console.log("발생", e);
       res.status(500).json(e);
 
       return;
